@@ -1,0 +1,16 @@
+{
+    "C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/g++.exe",
+    "makefile.makefilePath": "C:\\Users\\Sietse\\Documents\\HPP\\array_sum\\inleveropgave-3-array-sum-DrZisnotavailable\\Makefile",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "c:\\Users\\Sietse\\Documents\\HPP\\array_sum",
+            "binaryPath": "c:\\Users\\Sietse\\Documents\\HPP\\array_sum\\arraySum",
+            "binaryArgs": []
+        },
+        {
+            "cwd": "c:\\Users\\Sietse\\Documents\\HPP\\array_sum\\inleveropgave-3-array-sum-DrZisnotavailable",
+            "binaryPath": "c:\\Users\\Sietse\\Documents\\HPP\\array_sum\\inleveropgave-3-array-sum-DrZisnotavailable\\arraySum",
+            "binaryArgs": []
+        }
+    ]
+}

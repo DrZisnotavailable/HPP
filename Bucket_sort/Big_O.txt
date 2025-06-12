@@ -1,0 +1,37 @@
+getNumDigits functie:
+
+
+Gebruikt een while loop die deelt door 10 tot er één cijfer over is
+Voor een getal n kost dit O(log n) tijd
+
+
+Initiële loop om maxDigits te vinden:
+
+
+Roept getNumDigits aan voor elk element in de lijst
+Als n het grootste getal in de lijst is en k de lengte van de lijst:
+Time complexity: O(k * log n)
+
+
+Hoofdsorteerlus:
+
+
+Draait maxDigits keer (laten we dit d keer noemen)
+Voor elke iteratie:
+
+distributionPass: O(k) om elk getal één keer te verwerken
+gatheringPass: O(k) om alle getallen terug te verzamelen
+
+
+Totaal voor de hoofdlus: O(d * k)
+
+
+Totale time complexity:
+
+
+Initiële maxDigits berekening: O(k * log n)
+Hoofdsorteerlus: O(d * k)
+Waarbij d = log₁₀(n) (aantal cijfers in het grootste getal)
+Daarom is de totale complexiteit: O(k * log n + k * log n)
+
+Dit vereenvoudigt naar: O(k * log n)
