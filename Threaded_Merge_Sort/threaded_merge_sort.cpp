@@ -8,11 +8,24 @@
 #include <iterator>
 #include <thread>
 #include <vector>
+#include <array>
 
 #include <fstream>
 #include <memory>
 #include <vector>
 #include <iostream>
+
+typedef std::shared_ptr<const std::vector<int>> input_array;
+typedef std::shared_ptr<std::vector<int>> temporary_array;
+
+template<size_t N>
+std::array<int, N> createRandomList(){
+    std::array<int, N> lst;
+    for(int j=0; j<N; j++){
+        lst[j] = rand() % 1000;
+    }
+    return lst;
+}
 
 // Recursive parallel merge sort template
 // - RandomIt: iterator type
@@ -33,11 +46,11 @@ void parallelMergeSort(RandomIt first, RandomIt last,
         // Sorteer rechterhelft in een nieuwe thread
         std::thread right_thread(
             parallelMergeSort<RandomIt>, middle, last,
-            max_threads, active_threads + 1);
+            max_threads, active_threads * 2);
 
         // Sorteer linkerhelft in huidige thread
         parallelMergeSort<RandomIt>(first, middle,
-                                   max_threads, active_threads + 1);
+                                   max_threads, active_threads * 2);
 
         // Wacht op rechter thread
         right_thread.join();
@@ -52,14 +65,13 @@ void parallelMergeSort(RandomIt first, RandomIt last,
 }
 
 int main() {
-    std::vector<double> data = {9,8,7,6,5,4,3,2,1,0};
-    const int runs = 1000;
-    const std::vector<int> thread_counts = {1, 2, 4, 8};
+    auto list = createRandomList<100000>();    const int runs = 10;
+    const std::vector<int> thread_counts = {1, 2, 4, 8, 16};
 
     for (int threads : thread_counts) {
         auto start_time = std::chrono::high_resolution_clock::now();
         for (int i = 0; i < runs; ++i) {
-            auto temp = data; // reset originele data
+            auto temp = list; // reset originele data
             parallelMergeSort(temp.begin(), temp.end(), threads, 1);
         }
         auto end_time = std::chrono::high_resolution_clock::now();
